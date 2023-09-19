@@ -144,7 +144,7 @@ size_t _pListstr(const list_t *head);
 int delete_node_at_index(list_t **head, unsigned int index);
 int free_p(void **ptr);
 void free_l(list_t **head_ptr);
-size_t list_len(const list_t *head);
+size_t l_len(const list_t *head);
 char **list_to_str(list_t *head);
 size_t _printList(const list_t *head);
 list_t *node_starts_with(list_t *node, char *pre, char c);

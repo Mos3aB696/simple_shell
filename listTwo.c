@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * list_len - length of linked list
+ * l_len - length of linked list
  * @head: liked list head
  *
  * Return: i
  */
 
-size_t list_len(const list_t *head)
+size_t l_len(const list_t *head)
 {
 	size_t i = 0;
 
@@ -28,7 +28,7 @@ size_t list_len(const list_t *head)
 char **list_to_str(list_t *head)
 {
 	list_t *node = head;
-	size_t i = list_len(head), j;
+	size_t i = l_len(head), j;
 	char **strings;
 	char *str;
 
