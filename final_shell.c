@@ -10,9 +10,9 @@
 int hsh(info_t *info, char **av)
 {
 	ssize_t read_byte = 0;
-	int builtin_ret = 0;
+	int result = 0;
 
-	while (read_byte != -1 && builtin_ret != -2)
+	while (read_byte != -1 && result != -2)
 	{
 		clearInfo(info);
 		if (_isInteractive(info))
@@ -22,8 +22,8 @@ int hsh(info_t *info, char **av)
 		if (read_byte != -1)
 		{
 			setInfo(info, av);
-			builtin_ret = findBuiltin(info);
-			if (builtin_ret == -1)
+			result = findBuiltin(info);
+			if (result == -1)
 				findCMD(info);
 		}
 		else if (_isInteractive(info))
@@ -34,13 +34,13 @@ int hsh(info_t *info, char **av)
 	freeInfo(info, 1);
 	if (!_isInteractive(info) && info->status)
 		exit(info->status);
-	if (builtin_ret == -2)
+	if (result == -2)
 	{
 		if (info->e_num == -1)
 			exit(info->status);
 		exit(info->e_num);
 	}
-	return (builtin_ret);
+	return (result);
 }
 
 /**
@@ -51,7 +51,7 @@ int hsh(info_t *info, char **av)
  */
 int findBuiltin(info_t *info)
 {
-	int i, builtin_ret = -1;
+	int i, result = -1;
 	built_table builtin_table[] = {
 			{"exit", _exit_},
 			{"env", _env},
@@ -68,10 +68,10 @@ int findBuiltin(info_t *info)
 		if (_strcmp(info->argv[0], builtin_table[i].type) == 0)
 		{
 			info->l_count++;
-			builtin_ret = builtin_table[i].func(info);
+			result = builtin_table[i].func(info);
 			break;
 		}
-	return (builtin_ret);
+	return (result);
 }
 
 /**
