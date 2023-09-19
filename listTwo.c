@@ -55,12 +55,12 @@ char **list_to_str(list_t *head)
 }
 
 /**
- * print_list - prints all elements of list_t
+ * _printList - prints all elements of list_t
  * @head: list_t head
  *
  * Return: i
  */
-size_t print_list(const list_t *head)
+size_t _printList(const list_t *head)
 {
 	size_t i = 0;
 
