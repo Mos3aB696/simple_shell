@@ -36,18 +36,18 @@ int _exit_(info_t *info)
  */
 int _cd(info_t *info)
 {
-	char *str, *dir, buffer[1024];
+	char *str, *dir, buf[1024];
 	int change_dir;
 
-	str = getcwd(buffer, 1024);
+	str = getcwd(buf, 1024);
 	if (!str)
 		_puts("TODO: >>getcwd failure emsg here<<\n");
 	if (!info->argv[1])
 	{
-		dir = _getenv(info, "HOME");
+		dir = _getenv(info, "HOME=");
 		if (!dir)
 			change_dir =
-					chdir((dir = _getenv(info, "PWD")) ? dir : "/");
+					chdir((dir = _getenv(info, "PWD=")) ? dir : "/");
 		else
 			change_dir = chdir(dir);
 	}
@@ -73,7 +73,7 @@ int _cd(info_t *info)
 	else
 	{
 		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenv(info, "PWD", getcwd(buf, 1024));
 	}
 	return (0);
 }
@@ -86,11 +86,11 @@ int _cd(info_t *info)
  */
 int _help(info_t *info)
 {
-	char **arg_array;
+	char **arg_arr;
 
-	arg_array = info->argv;
+	arg_arr = info->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(*arg_array);
+		_puts(*arg_arr);
 	return (0);
 }
