@@ -9,7 +9,7 @@
 
 int _env(info_t *info)
 {
-	print_list_str(info->env);
+	_pListstr(info->env);
 	return (0);
 }
 
@@ -23,13 +23,13 @@ int _env(info_t *info)
 char *_getenv(info_t *info, const char *name)
 {
 	list_t *node = info->env;
-	char *p;
+	char *ptr;
 
 	while (node)
 	{
-		p = _startWith(node->data, name);
-		if (p && *p)
-			return (p);
+		ptr = _startWith(node->data, name);
+		if (ptr && *ptr)
+			return (ptr);
 		node = node->next;
 	}
 	return (NULL);
@@ -68,18 +68,16 @@ int _theunsetenv(info_t *info)
 		return (1);
 	}
 	for (i = 1; i <= info->argc; i++)
-	{
 		_unsetenv(info, info->argv[i]);
-	}
 	return (0);
 }
 /**
- * populate_env_list - populate env linked list
+ * _pop_env_list - populate env linked list
  * @info: new struct
  *
  * Return: 0
  */
-int populate_env_list(info_t *info)
+int _pop_env_list(info_t *info)
 {
 	list_t *node = NULL;
 	size_t i;

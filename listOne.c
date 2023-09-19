@@ -75,13 +75,13 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str - prints only str elements
+ * _pListstr - prints only str elements
  * @head: the head node
  *
  * Return: i
  */
 
-size_t print_list_str(const list_t *head)
+size_t _pListstr(const list_t *head)
 {
 	size_t i;
 
