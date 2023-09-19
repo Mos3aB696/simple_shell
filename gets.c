@@ -54,7 +54,7 @@ ssize_t get_input(info_t *info)
 	ssize_t byte_read = 0;
 	char **buf_p = &(info->arg), *p;
 
-	_putchar(BUF_FLUSH);
+	_putchar(BUFF_FLUSH);
 	byte_read = input_buff(info, &buf, &len);
 	if (byte_read == -1)
 		return (-1);
@@ -97,7 +97,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *size)
 
 	if (*size)
 		return (0);
-	byte_read = read(info->readfd, buf, READ_BUF_SIZE);
+	byte_read = read(info->readfd, buf, READ_BUFF_SIZE);
 	if (byte_read >= 0)
 		*size = byte_read;
 	return (byte_read);
@@ -113,7 +113,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *size)
  */
 int _getline(info_t *info, char **buff, size_t *len)
 {
-	static char buf[READ_BUF_SIZE];
+	static char buf[READ_BUFF_SIZE];
 	static size_t i, _len;
 	size_t j;
 	ssize_t byte_read = 0, s = 0;
@@ -159,5 +159,5 @@ void sig_HAND(__attribute__((unused)) int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");
-	_putchar(BUF_FLUSH);
+	_putchar(BUFF_FLUSH);
 }

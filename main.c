@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 				_errorPuts(": 0: Can't Open");
 				_errorPuts(argv[1]);
 				_errorPutchar('\n');
-				_errorPutchar(BUF_FLUSH);
+				_errorPutchar(BUFF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);

@@ -13,10 +13,10 @@
 #include <errno.h>
 
 
-#define READ_BUF_SIZE 1024
-#define WRITE_BUF_SIZE 1024
+#define READ_BUFF_SIZE 1024
+#define WRITE_BUFF_SIZE 1024
 
-#define BUF_FLUSH -1
+#define BUFF_FLUSH -1
 
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
