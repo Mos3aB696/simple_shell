@@ -21,17 +21,17 @@ int _history(info_t *info)
  */
 int _unsetalias(info_t *info, char *str)
 {
-	char *p, c;
+	char *ptr, c;
 	int ret;
 
-	p = _strchr(str, '=');
-	if (!p)
+	ptr = _strchr(str, '=');
+	if (!ptr)
 		return (1);
-	c = *p;
-	*p = 0;
+	c = *ptr;
+	*ptr = 0;
 	ret = delete_node_at_index(&(info->alias),
 										get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
-	*p = c;
+	*ptr = c;
 	return (ret);
 }
 
@@ -44,13 +44,13 @@ int _unsetalias(info_t *info, char *str)
  */
 int _setalias(info_t *info, char *str)
 {
-	char *p;
+	char *ptr;
 
-	p = _strchr(str, '=');
-	if (!p)
+	ptr = _strchr(str, '=');
+	if (!ptr)
 		return (1);
 
-	if (!*++p)
+	if (!*++ptr)
 		return (_unsetalias(info, str));
 
 	_unsetalias(info, str);
@@ -65,13 +65,13 @@ int _setalias(info_t *info, char *str)
  */
 int _printalias(list_t *node)
 {
-	char *str = NULL, *p = NULL;
+	char *str = NULL, *ptr = NULL;
 
 	if (node)
 	{
 		str = _strchr(node->data, '=');
-		for (p = node->data; p <= str; p++)
-			_putchar(*p);
+		for (ptr = node->data; ptr <= str; ptr++)
+			_putchar(*ptr);
 		_putchar('\'');
 		_puts(str + 1);
 		_puts("'\n");
@@ -90,7 +90,7 @@ int _alias(info_t *info)
 {
 	int i = 0;
 	char *str = NULL;
-	list_t *node;
+	list_t *node = NULL;
 
 	if (info->argc == 1)
 	{
