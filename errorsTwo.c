@@ -1,25 +1,25 @@
 #include "shell.h"
 
 /**
- * _erratio - comvert string to integer
- * @s: string to be converted
+ * _err_atoi - comvert string to integer
+ * @str: string to be converted
  *
  * Return: 0 or -1
  */
-int _erratio(char *s)
+int _err_atoi(char *str)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
-	if (*s == '+')
-		s++;
+	if (*str == '+')
+		str++;
 
-	for (i = 0; s[i] != '\0'; i++)
+	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (str[i] >= '0' && str[i] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (str[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -30,31 +30,31 @@ int _erratio(char *s)
 }
 
 /**
- * print_error - print error message
+ * _printError - print error message
  * @info: struct
- * @stre: string containing error
+ * @err_str: string containing error
  *
  * Return: 0 or -1
  */
-void print_error(info_t *info, char *stre)
+void _printError(info_t *info, char *err_str)
 {
 	_errorPuts(info->fname);
 	_errorPuts(": ");
-	print_d(info->l_count, STDERR_FILENO);
+	print_dec(info->l_count, STDERR_FILENO);
 	_errorPuts(": ");
 	_errorPuts(info->argv[0]);
 	_errorPuts(": ");
-	_errorPuts(stre);
+	_errorPuts(err_str);
 }
 
 /**
- * print_d - print a decimal
+ * print_dec - print a decimal
  * @input: the input
  * @fd: filedescriptor
  *
  * Return: number of character printed
  */
-int print_d(int input, int fd)
+int print_dec(int input, int fd)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
@@ -87,34 +87,34 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number -converter function, clone of atio
+ * conv_num -converter function, clone of atio
  * @base: base
- * @num: number
+ * @number: the number
  * @flags: argument flags
  *
  * Return: string
  */
-char *convert_number(long int num, int base, int flags)
+char *conv_num(long int number, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = num;
+	unsigned long num = number;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(flags & CONVERT_UNSIGNED) && number < 0)
 	{
-		n = -num;
+		num = -number;
 		sign = '-';
 	}
 	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
-	do  {
-		*--ptr = array[n % base];
-		n /= base;
-	} while (n != 0);
+	do {
+		*--ptr = array[num % base];
+		num /= base;
+	} while (num != 0);
 
 	if (sign)
 		*--ptr = sign;

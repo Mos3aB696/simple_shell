@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * get_environ - returns the string array copy of our environ
+ * get_env - returns the string array copy of our environ
  * @info: structure containing potential arguments
  *
  * Return: 0
  */
-char **get_environ(info_t *info)
+char **get_env(info_t *info)
 {
 	if (!info->environ || info->env_change)
 	{
@@ -28,15 +28,15 @@ int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
 	size_t i = 0;
-	char *p;
+	char *ptr;
 
 	if (!node || !var)
 		return (0);
 
 	while (node)
 	{
-		p = _startWith(node->data, var);
-		if (p && *p == '=')
+		ptr = _startWith(node->data, var);
+		if (ptr && *ptr == '=')
 		{
 			info->env_change = delete_node_at_index(&(info->env), i);
 			i = 0;
@@ -51,9 +51,9 @@ int _unsetenv(info_t *info, char *var)
 
 /**
  * _setenv - initialize a new environment variables
- * @info: structure cntaining potential arguments
- * @var: the string env var property
- * @value: the string env var value
+ * @info: new struct
+ * @var: the string env property
+ * @value: the string env value
  *
  * Return: 0
  */
@@ -61,7 +61,7 @@ int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = 0;
 	list_t *node;
-	char *p;
+	char *ptr;
 
 	if (!var || !value)
 		return (0);
@@ -77,8 +77,8 @@ int _setenv(info_t *info, char *var, char *value)
 
 	while (node)
 	{
-		p = _startWith(node->data, var);
-		if (p && *p == '=')
+		ptr = _startWith(node->data, var);
+		if (ptr && *ptr == '=')
 		{
 			free(node->data);
 			node->data = buf;

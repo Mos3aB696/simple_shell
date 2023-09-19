@@ -12,16 +12,16 @@ int _exit_(info_t *info)
 
 	if (info->argv[1])
 	{
-		checkexit = _erratio(info->argv[1]);
+		checkexit = _err_atoi(info->argv[1]);
 		if (checkexit == -1)
 		{
 			info->status = 2;
-			print_error(info, "Illegal number: ");
+			_printError(info, "Illegal number: ");
 			_errorPuts(info->argv[1]);
 			_errorPutchar('\n');
 			return (1);
 		}
-		info->e_num = _erratio(info->argv[1]);
+		info->e_num = _err_atoi(info->argv[1]);
 		return (-2);
 	}
 	info->e_num = -1;
@@ -67,7 +67,7 @@ int _cd(info_t *info)
 		change_dir = chdir(info->argv[1]);
 	if (change_dir == -1)
 	{
-		print_error(info, "can't cd to ");
+		_printError(info, "can't cd to ");
 		_errorPuts(info->argv[1]), _errorPutchar('\n');
 	}
 	else

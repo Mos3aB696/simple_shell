@@ -66,7 +66,7 @@ size_t _printList(const list_t *head)
 
 	while (head)
 	{
-		_puts(convert_number(head->num, 10, 0));
+		_puts(conv_num(head->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		if (head->data)

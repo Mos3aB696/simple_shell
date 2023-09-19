@@ -32,6 +32,7 @@ ssize_t input_buff(info_t *info, char **buf, size_t *len)
 			info->l_count_flag = 1;
 			remove_comment(*buf);
 			_listHistory(info, *buf, info->history_count++);
+			if (_strchr(*buf, ';'))
 			{
 				*len = byte_read;
 				info->cmd_buf = buf;
@@ -52,7 +53,7 @@ ssize_t get_input(info_t *info)
 	static char *buf;
 	static size_t i, j, len;
 	ssize_t byte_read = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf_p = &(info->arg), *ptr;
 
 	_putchar(BUFF_FLUSH);
 	byte_read = input_buff(info, &buf, &len);
@@ -61,7 +62,7 @@ ssize_t get_input(info_t *info)
 	if (len)
 	{
 		j = i;
-		p = buf + i;
+		ptr = buf + i;
 
 		_checkChain(info, buf, &j, i, len);
 		while (j < len)
@@ -76,8 +77,8 @@ ssize_t get_input(info_t *info)
 			i = len = 0;
 			info->cmd_buf_type = CMD_NORM;
 		}
-		*buf_p = p;
-		return (_strlen(p));
+		*buf_p = ptr;
+		return (_strlen(ptr));
 	}
 	*buf_p = buf;
 	return (byte_read);
