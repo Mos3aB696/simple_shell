@@ -30,7 +30,7 @@ int _unsetalias(info_t *info, char *str)
 	c = *ptr;
 	*ptr = 0;
 	ret = delete_node_at_index(&(info->alias),
-										get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+										get_n_index(info->alias, node_startwith(info->alias, str, -1)));
 	*ptr = c;
 	return (ret);
 }
@@ -108,7 +108,7 @@ int _alias(info_t *info)
 		if (str)
 			_setalias(info, info->argv[i]);
 		else
-			_printalias(node_starts_with(info->alias, info->argv[i], '='));
+			_printalias(node_startwith(info->alias, info->argv[i], '='));
 	}
 	return (0);
 }

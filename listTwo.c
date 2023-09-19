@@ -81,14 +81,14 @@ size_t _printList(const list_t *head)
 }
 
 /**
- * node_starts_with - node whose string starts with prefix
+ * node_startwith - node whose string starts with prefix
  * @node: pointer to list
  * @pre:string to match
  * @c: the next char
  *
  * Return: match node or NULL
  */
-list_t *node_starts_with(list_t *node, char *pre, char c)
+list_t *node_startwith(list_t *node, char *pre, char c)
 {
 	char *ptr = NULL;
 
@@ -103,19 +103,19 @@ list_t *node_starts_with(list_t *node, char *pre, char c)
 }
 
 /**
- * get_node_index - gets the index of a node
+ * get_n_index - gets the index of a node
  * @head: list_t head
- * @node: pointer to node
+ * @ptr_node: pointer to node
  *
  * Return: index of node or -1
  */
-ssize_t get_node_index(list_t *head, list_t *node)
+ssize_t get_n_index(list_t *head, list_t *ptr_node)
 {
 	size_t i = 0;
 
 	while (head)
 	{
-		if (head == node)
+		if (head == ptr_node)
 			return (i);
 		head = head->next;
 		i++;
