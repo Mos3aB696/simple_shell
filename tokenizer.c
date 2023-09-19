@@ -9,22 +9,22 @@
  */
 char **_strtok(char *str, char *d)
 {
-	int i, j, k, m, numwords = 0;
+	int i, j, k, m, num = 0;
 	char **ptr;
 
-	if (str == NULL || str[0] == 0)
+	if (!str || str[0] == 0)
 		return (NULL);
 	if (!d)
 		d = " ";
 	for (i = 0; str[i] != '\0'; i++)
 		if (!_isdelim(str[i], d) && (_isdelim(str[i + 1], d) || !str[i + 1]))
-			numwords++;
-	if (numwords == 0)
+			num++;
+	if (num == 0)
 		return (NULL);
-	ptr = malloc((numwords + 1) * sizeof(char *));
+	ptr = malloc((num + 1) * sizeof(char *));
 	if (!ptr)
 		return (NULL);
-	for (i = 0, j = 0; j < numwords; j++)
+	for (i = 0, j = 0; j < num; j++)
 	{
 		while (_isdelim(str[i], d))
 			i++;
