@@ -9,16 +9,18 @@
 
 char *_strdup(const char *src)
 {
-	char *str, *new;
+	char *str;
 	int len = 0;
 
-	while (src[len])
+	if (!src)
+		return (NULL);
+	while (*src++)
 		len++;
-	str = malloc(len + 1);
-	new = str;
-	while (*src)
-		*new++ = *src++;
-	*new = '\0';
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	for (len++; len--;)
+		str[len] = *--src;
 	return (str);
 }
 
@@ -27,23 +29,19 @@ char *_strdup(const char *src)
  * @dest: string one
  * @src: string two
  *
- * Return: dest
+ * Return: ptr
  */
 
 char *_strcat(char *dest, char *src)
 {
-	size_t i = 0, j = 0;
+	char *ptr = dest;
 
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ptr);
 }
 
 /**
@@ -57,6 +55,8 @@ int _strlen(char *str)
 {
 	int len = 0;
 
+	if (!str)
+		return (0);
 	while (str[len] != '\0')
 		len++;
 	return (len);
@@ -64,21 +64,24 @@ int _strlen(char *str)
 
 /**
  * _strcmp - function that compare two string
- * @s1: String One
- * @s2: String Two
+ * @strOne: String One
+ * @strTwo: String Two
  *
  * Return: 0
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *strOne, char *strTwo)
 {
-	while (*s1 && *s2)
+	while (*strOne && *strTwo)
 	{
-		if (*s1 - *s2 != 0)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (*strOne != *strTwo)
+			return (*strOne - *strTwo);
+		strOne++;
+		strTwo++;
 	}
-	return (0);
+	if (*strOne == *strTwo)
+		return (0);
+	else
+		return (*strOne < *strTwo ? (-1) : (1));
 }
 /**
  * _strchr - locates char in a string

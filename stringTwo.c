@@ -17,40 +17,40 @@ char *_startWith(const char *haystack, const char *needle)
 
 /**
  * _putchar - write charachter to stdout
- * @c: charachter
+ * @ch: charachter
  *
  * Return: 1 or -1
  */
-int _putchar(char c)
+int _putchar(char ch)
 {
 	static int i;
-	static char buf[WRITE_BUFF_SIZE];
+	static char buff[WRITE_BUFF_SIZE];
 
-	if (c == BUFF_FLUSH || i >= WRITE_BUFF_SIZE)
+	if (ch == BUFF_FLUSH || i >= WRITE_BUFF_SIZE)
 	{
-		write(1, buf, i);
+		write(1, buff, i);
 		i = 0;
 	}
-	if (c != BUFF_FLUSH)
-		buf[i++] = c;
+	if (ch != BUFF_FLUSH)
+		buff[i++] = ch;
 	return (1);
 }
 
 /**
  * _puts - print string
- * @str: the string to be printed
+ * @src: the string to be printed
  *
  * Return: nothing
  */
-void _puts(char *str)
+void _puts(char *src)
 {
 	int i = 0;
 
-	if (!str)
+	if (!src)
 		return;
-	while (str[i] != '\0')
+	while (src[i] != '\0')
 	{
-		_putchar(str[i]);
+		_putchar(src[i]);
 		i++;
 	}
 }
