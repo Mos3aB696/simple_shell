@@ -17,7 +17,7 @@ int hsh(info_t *info, char **av)
 		clearInfo(info);
 		if (_isInteractive(info))
 			_puts("#cisfun$ ");
-		_errorPutchar(BUF_FLUSH);
+		_errorPutchar(BUFF_FLUSH);
 		read_byte = get_input(info);
 		if (read_byte != -1)
 		{
@@ -134,7 +134,7 @@ void forkCMD(info_t *info)
 	}
 	if (childPid == 0)
 	{
-		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		if (execve(info->path, info->argv, get_env(info)) == -1)
 		{
 			freeInfo(info, 1);
 			if (errno == EACCES)
