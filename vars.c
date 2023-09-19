@@ -12,7 +12,7 @@ int _isChain(info_t *info, char *buf, size_t *str)
 {
 	size_t i = *str;
 
-	if (buf[i] == '|' && buf[i + i] == '|')
+	if (buf[i] == '|' && buf[i + 1] == '|')
 	{
 		buf[i] = 0;
 		i++;
