@@ -25,19 +25,19 @@ int free_p(void **p)
  */
 void free_l(list_t **head_P)
 {
-	list_t *node, *next_node, *head;
+	list_t *cur, *next_cur, *h;
 
 	if (!head_P || !*head_P)
 		return;
 
-	head = *head_P;
-	node = head;
-	while (node)
+	h = *head_P;
+	cur = h;
+	while (cur)
 	{
-		next_node = node->next;
-		free(node->data);
-		free(node);
-		node = next_node;
+		next_cur = cur->next;
+		free(cur->data);
+		free(cur);
+		cur = next_cur;
 	}
 	*head_P = NULL;
 }

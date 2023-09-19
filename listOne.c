@@ -17,6 +17,8 @@ list_t *add_node(list_t **head, const char *str, int num)
 		return (NULL);
 
 	data = malloc(sizeof(list_t));
+	if (!data)
+		return (NULL);
 	_memoryset((void *)data, 0, sizeof(list_t));
 	data->num = num;
 	if (str)
@@ -113,29 +115,30 @@ int delete_node_at_index(list_t **head, unsigned int index)
 	list_t *cur, *prev;
 	unsigned int i = 0;
 
-	if (!*head)
-		return (-1);
-
-	cur = *head;
-	prev = NULL;
+	if (!*head || !head)
+		return (0);
 
 	if (!index)
 	{
+		cur = *head;
 		*head = (*head)->next;
+		free(cur->data);
 		free(cur);
 		return (1);
 	}
-	for (i = 0; i < index; i++)
+	cur = *head;
+	while (cur)
 	{
-		if (!cur)
-			return (-1);
+		if (i == index)
+		{
+			prev->next = cur->next;
+			free(cur->data);
+			free(cur);
+			return (1);
+		}
+		i++;
 		prev = cur;
 		cur = cur->next;
 	}
-	if (!cur)
-		return (-1);
-
-	prev->next = cur->next;
-	free(cur);
-	return (1);
+	return (0);
 }
