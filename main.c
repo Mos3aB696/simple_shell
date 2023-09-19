@@ -15,8 +15,8 @@ int main(int argc, char **argv)
 
 	asm("mov %1, %0\n\t"
 			"add $3, %0"
-			: "=r" (fd)
-			: "r" (fd));
+			: "=r"(fd)
+			: "r"(fd));
 
 	if (argc == 2)
 	{
@@ -37,6 +37,10 @@ int main(int argc, char **argv)
 			return (EXIT_FAILURE);
 		}
 		info->readfd = fd;
+	}
+	else if (argc == 1 && isatty(STDIN_FILENO) == 0)
+	{
+		info->readfd = STDIN_FILENO;
 	}
 	_pop_env_list(info);
 	_readHistory(info);
