@@ -55,11 +55,11 @@ char *_strcat(char *dest, char *src)
 
 int _strlen(char *str)
 {
-	int i = 0;
+	int len = 0;
 
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
 /**
