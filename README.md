@@ -123,10 +123,6 @@ There are no known bugs at this time. Please report any issues or feature reques
 
 Contributions are welcome! Feel free to fork the repository, create a new branch, and submit a pull request with improvements or bug fixes. Please ensure your code adheres to the style of the existing codebase.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Mos3aB696/simple_shell/blob/main/LICENSE) file for details.
-
 ## Contact
 
 For any questions or issues, you can reach me at:
